@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CadastroLivrosApp.MainPage"
+             xmlns:models="clr-namespace:CadastroLivrosApp.Models"
+             Title="Catálogo de Livros">
+
+    <Grid RowDefinitions="*, Auto, Auto, Auto" RowSpacing="0" BackgroundColor="Black">
+
+     
+        <Grid Grid.Row="0" Padding="10,0" RowDefinitions="Auto, *, Auto">
+
+         
+            <Label Grid.Row="0" 
+                   Text="Livros Cadastrados" 
+                   FontSize="Large" 
+                   FontAttributes="Bold" 
+                   TextColor="#1E3A8A"
+                   Margin="0,15,0,10" />
+
+          
+            <CollectionView x:Name="BooksCollectionView" 
+                            Grid.Row="1"
+                            SelectionMode="Single"
+                            SelectionChanged="OnBookSelected">
+                <CollectionView.EmptyView>
+                    <Label Text="Nenhum livro cadastrado. Clique no '+' para começar!" 
+                           TextColor="White"
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center"
+                           Padding="20"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Book">
+                        <Frame Margin="0,5" Padding="15" CornerRadius="8" HasShadow="True" BackgroundColor="#00796B">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <VerticalStackLayout Grid.Column="0">
+                                    <Label Text="{Binding NomeLivro}" 
+                                           FontSize="Medium" 
+                                           FontAttributes="Bold" 
+                                           TextColor="White"/>
+                                    <Label Text="{Binding NomeAutor, StringFormat='Autor: {0}'}" 
+                                           TextColor="#E5E7EB"/>
+                                    <Label Text="{Binding ISBN, StringFormat='ISBN: {0}'}" 
+                                           TextColor="#D1D5DB"
+                                           FontSize="Small"/>
+                                </VerticalStackLayout>
+                                <Image Grid.Column="1" Source="book_icon.png" WidthRequest="30" HeightRequest="30" HorizontalOptions="End">
+
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnBookSelected" CommandParameter="{Binding .}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+           
+            <Frame Grid.Row="2" CornerRadius="8" HasShadow="True" Margin="0,15,0,10" BackgroundColor="#E0F7FA">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Localização Atual" FontAttributes="Bold" TextColor="#00796B"/>
+                    <Label x:Name="LocalizacaoLabel" TextColor="#004D40" Text="Clique no botão abaixo para buscar..."/>
+                </VerticalStackLayout>
+            </Frame>
+
+        </Grid>
+
+        <Button Grid.Row="1" 
+                Text="&#x2b; Adicionar Novo Livro" 
+                Clicked="OnAddBookClicked"
+                BackgroundColor="#3B82F6" 
+                TextColor="White"
+                CornerRadius="10"
+                Margin="20,10"
+                Padding="20"/>
+
+     
+        <Button Grid.Row="2"
+                Text="Exibir Minha Localização"
+                Clicked="OnLocalizacaoClicked"
+                BackgroundColor="#10B981"
+                TextColor="White"
+                CornerRadius="10"
+                Margin="20,0,20,10"
+                Padding="20"/>
+
+        <VerticalStackLayout Grid.Row="3" Padding="10" BackgroundColor="#E5E7EB">
+            <Label Text="Projeto Desenvolvido por: João Victor Crivoi Cesar Souza" 
+                   HorizontalOptions="Center" 
+                   FontSize="Small" 
+                   TextColor="#4B5563"/>
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

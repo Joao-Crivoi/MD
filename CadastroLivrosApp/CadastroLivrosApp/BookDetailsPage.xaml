@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CadastroLivrosApp.BookDetailPage"
+             Title="{Binding Title}">
+
+    <VerticalStackLayout Spacing="15" Padding="20" BackgroundColor="Black">
+
+        <!-- Campo Nome do Livro -->
+        <Label Text="Nome do Livro" FontAttributes="Bold" TextColor="White"/>
+        <Entry x:Name="NomeLivroEntry" 
+               Placeholder="Digite o nome do livro"
+               Text="{Binding NomeLivro}" 
+               TextColor="#1F2937"
+               BackgroundColor="White"
+               ClearButtonVisibility="WhileEditing"/>
+
+        <!-- Campo Nome do Autor -->
+        <Label Text="Nome do Autor" FontAttributes="Bold" TextColor="White"/>
+        <Entry x:Name="NomeAutorEntry" 
+               Placeholder="Digite o nome do autor"
+               Text="{Binding NomeAutor}"
+               TextColor="#1F2937"
+               BackgroundColor="White"
+               ClearButtonVisibility="WhileEditing"/>
+
+        <!-- Campo E-mail do Autor -->
+        <Label Text="E-mail do Autor" FontAttributes="Bold" TextColor="White"/>
+        <Entry x:Name="EmailAutorEntry" 
+               Placeholder="Digite o e-mail do autor"
+               Text="{Binding EmailAutor}"
+               Keyboard="Email"
+               TextColor="#1F2937"
+               BackgroundColor="White"
+               ClearButtonVisibility="WhileEditing"/>
+
+        <!-- Campo ISBN -->
+        <Label Text="ISBN" FontAttributes="Bold" TextColor="White"/>
+        <Entry x:Name="ISBNEntry" 
+               Placeholder="Digite o ISBN"
+               Text="{Binding ISBN}"
+               TextColor="#1F2937"
+               BackgroundColor="White"
+               ClearButtonVisibility="WhileEditing"/>
+
+        <Grid ColumnDefinitions="*, *" ColumnSpacing="10" Margin="0,20,0,0">
+            <!-- Botão Salvar (ou Atualizar) -->
+            <Button Grid.Column="0" 
+                    Text="Salvar Livro" 
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="#10B981" 
+                    TextColor="White"
+                    CornerRadius="10"
+                    FontAttributes="Bold"/>
+
+            <!-- Botão Excluir (visível apenas para edição) -->
+            <Button Grid.Column="1" 
+                    x:Name="DeleteButton"
+                    Text="Excluir" 
+                    Clicked="OnDeleteClicked"
+                    BackgroundColor="#EF4444" 
+                    TextColor="White"
+                    CornerRadius="10"
+                    FontAttributes="Bold"/>
+        </Grid>
+
+        <!-- Botão Cancelar -->
+        <Button Text="Cancelar" 
+                Clicked="OnCancelClicked"
+                BackgroundColor="#6B7280" 
+                TextColor="White"
+                CornerRadius="10"/>
+
+    </VerticalStackLayout>
+</ContentPage>
